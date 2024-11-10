@@ -6,14 +6,22 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.List
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import com.github.terrakok.modo.animation.SlideTransition
@@ -50,6 +58,7 @@ class MainTabScreenFinal(
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainTabContent(
     selectedTabPos: Int,
@@ -57,8 +66,35 @@ fun MainTabContent(
     modifier: Modifier = Modifier,
     content: @Composable PaddingValues.() -> Unit,
 ) {
+    val icons by remember { mutableStateOf(listOf<String>()) }
+
     Scaffold(
         modifier = modifier,
+        topBar = {
+            TopAppBar(
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = Color.LightGray
+                ),
+                title = {
+                    for (tab in MainTabs.entries) {
+                        Text(
+                            text = tab.title,
+                            color = Color.Black
+                        )
+                    }
+                },
+                actions = {
+                    icons.forEach { icon ->
+                        IconButton(onClick = { /* Handle icon click */ }) {
+                            Icon(
+                                imageVector = Icons.Default.Star,
+                                contentDescription = null
+                            )
+                        }
+                    }
+                }
+            )
+        },
         bottomBar = {
             BottomAppBar {
                 for ((pos, tab) in MainTabs.entries.withIndex()) {
@@ -93,5 +129,5 @@ enum class MainTabs(
     val icon: ImageVector,
     val title: String
 ) {
-    LIST_BOOKS(Icons.AutoMirrored.Filled.List, "List")
+    LIST_BOOKS(Icons.AutoMirrored.Filled.List, "Главная")
 }

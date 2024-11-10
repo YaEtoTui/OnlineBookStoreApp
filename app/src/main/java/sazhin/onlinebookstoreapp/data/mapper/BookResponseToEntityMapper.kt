@@ -1,11 +1,11 @@
 package sazhin.onlinebookstoreapp.data.mapper
 
-import sazhin.onlinebookstoreapp.data.model.BookListResponse
+import sazhin.onlinebookstoreapp.data.model.BookResponse
 import sazhin.onlinebookstoreapp.domain.models.Book
 
 class BookResponseToEntityMapper {
-    fun mapBooks(response: BookListResponse): List<Book> {
-        return response.books?.map {
+    fun mapBooks(response: List<BookResponse?>?): List<Book> {
+        return response?.map {
             Book(
                 id = it?.id ?: 0L,
                 name = it?.name.orEmpty(),
