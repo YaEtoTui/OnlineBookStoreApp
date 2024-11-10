@@ -8,4 +8,5 @@ interface ListState {
     val items: List<Book>
     val error: String?
     var loading: Boolean
+    var countBooks: Int
 }

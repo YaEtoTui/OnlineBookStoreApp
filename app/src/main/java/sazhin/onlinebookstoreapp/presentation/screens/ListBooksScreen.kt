@@ -88,5 +88,6 @@ private fun ConstructorItem(
         Spacer(modifier = Modifier.width(16.dp))
         Text(text = String.format("Название книги: %s", item.name))
         Text(text = String.format("Количество страниц: %d", item.page))
+        Text(text = String.format("В наличии: %d", item.count))
     }
 }

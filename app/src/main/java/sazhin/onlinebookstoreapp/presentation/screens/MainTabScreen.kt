@@ -6,7 +6,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.List
-import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -18,8 +19,6 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -34,6 +33,8 @@ import kotlinx.parcelize.Parcelize
 class MainTabScreenFinal(
     private val navModel: MultiScreenNavModel = MultiScreenNavModel(
         ListBooksScreen(),
+        BasketScreen(),
+        SettingsScreen(),
         selected = 0
     )
 ) : MultiScreen(navModel) {
@@ -66,7 +67,6 @@ fun MainTabContent(
     modifier: Modifier = Modifier,
     content: @Composable PaddingValues.() -> Unit,
 ) {
-    val icons by remember { mutableStateOf(listOf<String>()) }
 
     Scaffold(
         modifier = modifier,
@@ -76,18 +76,20 @@ fun MainTabContent(
                     containerColor = Color.LightGray
                 ),
                 title = {
-                    for (tab in MainTabs.entries) {
-                        Text(
-                            text = tab.title,
-                            color = Color.Black
-                        )
-                    }
+//                    for ((pos, tab) in MainTabs.entries.withIndex()) {
+//                        Text(
+//                            text = tab.title,
+//                            color = Color.Black
+//                        )
+//                    }
                 },
                 actions = {
-                    icons.forEach { icon ->
-                        IconButton(onClick = { /* Handle icon click */ }) {
+                    IconList.entries.forEach { iconObject ->
+                        IconButton(onClick = {
+                            /* Handle icon click */
+                        }) {
                             Icon(
-                                imageVector = Icons.Default.Star,
+                                imageVector = iconObject.icon,
                                 contentDescription = null
                             )
                         }
@@ -110,7 +112,6 @@ fun MainTabContent(
                                 alpha = if (pos == selectedTabPos) contentColor.alpha else 0.5f
                             ), label = ""
                         )
-
                         Icon(
                             rememberVectorPainter(tab.icon),
                             tint = color,
@@ -129,5 +130,13 @@ enum class MainTabs(
     val icon: ImageVector,
     val title: String
 ) {
-    LIST_BOOKS(Icons.AutoMirrored.Filled.List, "Главная")
+    LIST_BOOKS(Icons.AutoMirrored.Filled.List, "Main"),
+    BASKET(Icons.Filled.ShoppingCart, "Basket"),
+    SETTINGS(Icons.Default.Settings, "Settings")
+}
+
+enum class IconList(
+    val icon: ImageVector
+) {
+    BASKET(Icons.Filled.ShoppingCart)
 }

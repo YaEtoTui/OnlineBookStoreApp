@@ -1,6 +1,7 @@
 package sazhin.onlinebookstoreapp.viewModel
 
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
@@ -31,6 +32,7 @@ class BookViewModel(
             mutableState.error = null
 
             mutableState.items = repository.getBooks()
+                .take(viewState.countBooks)
         }
     }
 
@@ -38,5 +40,6 @@ class BookViewModel(
         override var items: List<Book> by mutableStateOf(emptyList())
         override var error: String? by mutableStateOf(null)
         override var loading: Boolean by mutableStateOf(false)
+        override var countBooks: Int by mutableIntStateOf(5)
     }
 }
