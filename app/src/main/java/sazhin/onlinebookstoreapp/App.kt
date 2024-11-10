@@ -4,6 +4,8 @@ import android.app.Application
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
+import sazhin.onlinebookstoreapp.di.networkModule
+import sazhin.onlinebookstoreapp.di.rootModule
 
 class App : Application() {
 
@@ -13,7 +15,7 @@ class App : Application() {
         startKoin {
             androidLogger()
             androidContext(this@App)
-//            modules(rootModule, networkModule, dbModule)
+            modules(rootModule, networkModule)
         }
     }
 }
