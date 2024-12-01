@@ -7,4 +7,7 @@ interface BookApi {
 
     @GET("api/books/list")
     suspend fun getBooks(): List<BookResponse?>?
+
+    @GET("api/books/cart/list")
+    suspend fun getBooksInCart(): List<BookResponse?>?
 }

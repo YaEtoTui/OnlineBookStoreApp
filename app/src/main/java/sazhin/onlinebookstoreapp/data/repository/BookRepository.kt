@@ -17,4 +17,10 @@ class BookRepository(
             mapper.mapBooks(api.getBooks())
         }
     }
+
+    override suspend fun getBooksInCart(): List<Book> {
+        return withContext(Dispatchers.IO) {
+            mapper.mapBooks(api.getBooksInCart())
+        }
+    }
 }

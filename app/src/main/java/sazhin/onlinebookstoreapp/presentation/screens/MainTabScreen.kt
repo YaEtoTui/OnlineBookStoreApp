@@ -14,7 +14,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
@@ -76,24 +75,9 @@ fun MainTabContent(
                     containerColor = Color.LightGray
                 ),
                 title = {
-//                    for ((pos, tab) in MainTabs.entries.withIndex()) {
-//                        Text(
-//                            text = tab.title,
-//                            color = Color.Black
-//                        )
-//                    }
+
                 },
                 actions = {
-                    IconList.entries.forEach { iconObject ->
-                        IconButton(onClick = {
-                            /* Handle icon click */
-                        }) {
-                            Icon(
-                                imageVector = iconObject.icon,
-                                contentDescription = null
-                            )
-                        }
-                    }
                 }
             )
         },
@@ -133,10 +117,4 @@ enum class MainTabs(
     LIST_BOOKS(Icons.AutoMirrored.Filled.List, "Main"),
     BASKET(Icons.Filled.ShoppingCart, "Basket"),
     SETTINGS(Icons.Default.Settings, "Settings")
-}
-
-enum class IconList(
-    val icon: ImageVector
-) {
-    BASKET(Icons.Filled.ShoppingCart)
 }

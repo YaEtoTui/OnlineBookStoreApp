@@ -10,5 +10,5 @@ import sazhin.onlinebookstoreapp.viewModel.BookViewModel
 val rootModule = module {
     single<IBookRepository> { BookRepository(get(), get()) }
     factory { BookResponseToEntityMapper() }
-    viewModel { BookViewModel(get()) }
+    viewModel { BookViewModel(get(), get()) }
 }

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">OnlineBookStoreApp</string>
+    <string name="confirm">Подтвердить</string>
 </resources>
