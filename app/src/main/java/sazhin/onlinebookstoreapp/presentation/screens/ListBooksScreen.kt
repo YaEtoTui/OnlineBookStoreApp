@@ -13,18 +13,13 @@ import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Card
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.github.terrakok.modo.Screen
@@ -35,6 +30,7 @@ import com.github.terrakok.modo.stack.StackNavContainer
 import com.github.terrakok.modo.stack.forward
 import kotlinx.parcelize.Parcelize
 import org.koin.androidx.compose.koinViewModel
+import sazhin.onlinebookstoreapp.R
 import sazhin.onlinebookstoreapp.domain.models.Book
 import sazhin.onlinebookstoreapp.viewModel.BookViewModel
 import sazhin.onlinebookstoreapp.viewModel.state.ListState
@@ -90,7 +86,6 @@ private fun ConstructorItem(
             .padding(30.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        var isCartVisible by remember { mutableStateOf(false) }
 
         AsyncImage(
             model = item.path,
@@ -103,11 +98,7 @@ private fun ConstructorItem(
         Text(text = String.format("Количество страниц: %d", item.page))
         Text(text = String.format("В наличии: %d", item.count))
 
-        if (!isCartVisible) {
-            BuyButton(onClick = { isCartVisible = true })
-        } else {
-            ShoppingCart(state)
-        }
+        BuyButton(onClick = {  })
     }
 }
 
@@ -120,25 +111,6 @@ fun BuyButton(onClick: () -> Unit) {
             .fillMaxWidth()
             .padding(16.dp)
     ) {
-        Text("В корзину")
-    }
-}
-
-@Composable
-fun ShoppingCart(state: ListState) {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp)
-    ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp)
-        ) {
-
-
-            Text(String.format("Корзина: %s", state.countBooksInCart), style = MaterialTheme.typography.headlineSmall)
-        }
+        Text(stringResource(R.string.cart))
     }
 }
