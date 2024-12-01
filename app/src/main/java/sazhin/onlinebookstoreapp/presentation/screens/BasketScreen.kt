@@ -16,6 +16,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
@@ -27,6 +28,7 @@ import com.github.terrakok.modo.stack.StackNavContainer
 import com.github.terrakok.modo.stack.forward
 import kotlinx.parcelize.Parcelize
 import org.koin.androidx.compose.koinViewModel
+import sazhin.onlinebookstoreapp.R
 import sazhin.onlinebookstoreapp.domain.models.Book
 import sazhin.onlinebookstoreapp.viewModel.BookViewModel
 
@@ -68,7 +70,7 @@ class BasketScreen(
                     .padding(16.dp)
                     .align(Alignment.BottomCenter)
             ) {
-                Text(text = "Купить")
+                Text(text = stringResource(R.string.buy))
             }
         }
     }

@@ -45,7 +45,7 @@ class SettingsScreen(
             var inputText  by remember { mutableStateOf("") }
 
             Text(
-                text = "Количество книг:"
+                text = stringResource(R.string.count_books)
             )
 
             TextField(
