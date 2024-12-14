@@ -26,6 +26,13 @@ class BookInCartViewModel(
         }
     }
 
+    fun onCreateOrder() {
+        viewModelScope.launch {
+            repository.saveOrder(booksInCart)
+            loadBooksInCart()
+        }
+    }
+
     /**
      * Подсчитываем сумму за всех книги в корзине
      */

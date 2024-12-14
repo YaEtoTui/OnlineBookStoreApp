@@ -11,6 +11,6 @@ class BookDbEntity(
     @ColumnInfo(name = "page") val page: Int?,
     @ColumnInfo(name = "path_photo") val pathPhoto: String?,
     @ColumnInfo(name = "price") val price: Int?,
-    @ColumnInfo(name = "author_name") val authorName: String?
-
+    @ColumnInfo(name = "author_name") val authorName: String?,
+    @ColumnInfo(name = "is_order") val isOrder: Boolean?
 )

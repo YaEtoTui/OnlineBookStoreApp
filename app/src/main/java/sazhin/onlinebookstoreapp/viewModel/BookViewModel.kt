@@ -90,7 +90,7 @@ class BookViewModel(
     fun onInCartClicked(book: Book) {
         viewModelScope.launch {
             mutableState.items.find { it.name == book.name }
-                ?.let { repository.saveBook(book) }
+                ?.let { repository.saveBookInCart(book) }
         }
     }
 

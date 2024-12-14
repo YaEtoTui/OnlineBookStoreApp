@@ -7,10 +7,12 @@ import sazhin.onlinebookstoreapp.data.repository.BookRepository
 import sazhin.onlinebookstoreapp.domain.IBookRepository
 import sazhin.onlinebookstoreapp.viewModel.BookInCartViewModel
 import sazhin.onlinebookstoreapp.viewModel.BookViewModel
+import sazhin.onlinebookstoreapp.viewModel.OrderViewModel
 
 val rootModule = module {
     single<IBookRepository> { BookRepository(get(), get(), get()) }
     factory { BookResponseToEntityMapper() }
     viewModel { BookViewModel(get(), get()) }
     viewModel { BookInCartViewModel(get()) }
+    viewModel { OrderViewModel(get()) }
 }

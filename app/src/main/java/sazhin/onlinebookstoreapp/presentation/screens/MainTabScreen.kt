@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.List
+import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.BottomAppBar
@@ -33,6 +34,7 @@ class MainTabScreenFinal(
     private val navModel: MultiScreenNavModel = MultiScreenNavModel(
         ListBooksScreen(),
         BasketScreen(),
+        OrdersScreen(),
         SettingsScreen(),
         selected = 0
     )
@@ -116,5 +118,6 @@ enum class MainTabs(
 ) {
     LIST_BOOKS(Icons.AutoMirrored.Filled.List, "Main"),
     BASKET(Icons.Filled.ShoppingCart, "Basket"),
+    ORDERS(Icons.Default.DateRange, "Orders"),
     SETTINGS(Icons.Default.Settings, "Settings")
 }
