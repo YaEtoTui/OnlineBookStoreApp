@@ -87,6 +87,13 @@ class BookViewModel(
         }
     }
 
+    fun onInCartClicked(book: Book) {
+        viewModelScope.launch {
+            mutableState.items.find { it.name == book.name }
+                ?.let { repository.saveBook(book) }
+        }
+    }
+
     private class MutableListState : ListState {
         override var items: List<Book> by mutableStateOf(emptyList())
         override var countBooksInCart: Int by mutableIntStateOf(0)

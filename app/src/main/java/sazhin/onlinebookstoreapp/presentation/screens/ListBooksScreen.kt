@@ -33,7 +33,6 @@ import org.koin.androidx.compose.koinViewModel
 import sazhin.onlinebookstoreapp.R
 import sazhin.onlinebookstoreapp.domain.models.Book
 import sazhin.onlinebookstoreapp.viewModel.BookViewModel
-import sazhin.onlinebookstoreapp.viewModel.state.ListState
 
 @Parcelize
 class ListBooksScreen(
@@ -66,7 +65,7 @@ class ListBooksScreen(
                 lazyColumnState
             ) {
                 items(state.items) {
-                    ConstructorItem(item = it, navigation, state)
+                    ConstructorItem(item = it, viewModel::onInCartClicked, navigation)
                 }
             }
         }
@@ -76,8 +75,8 @@ class ListBooksScreen(
 @Composable
 private fun ConstructorItem(
     item: Book,
+    onInCartClicked: (Book) -> Unit = {},
     navigation: StackNavContainer? = null,
-    state: ListState
 ) {
     Column (
         modifier = Modifier
@@ -97,8 +96,9 @@ private fun ConstructorItem(
         Text(text = String.format("Название книги: %s", item.name))
         Text(text = String.format("Количество страниц: %d", item.page))
         Text(text = String.format("В наличии: %d", item.count))
+        Text(text = String.format("Цена: %d руб.", item.price))
 
-        BuyButton(onClick = {  })
+        BuyButton(onClick = { onInCartClicked.invoke(item) })
     }
 }
 

@@ -7,4 +7,6 @@ interface IBookRepository {
     suspend fun getBooks(): List<Book>
 
     suspend fun getBooksInCart(): List<Book>
+
+    suspend fun saveBook(book: Book)
 }

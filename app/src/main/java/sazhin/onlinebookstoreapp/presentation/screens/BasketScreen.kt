@@ -30,6 +30,7 @@ import kotlinx.parcelize.Parcelize
 import org.koin.androidx.compose.koinViewModel
 import sazhin.onlinebookstoreapp.R
 import sazhin.onlinebookstoreapp.domain.models.Book
+import sazhin.onlinebookstoreapp.viewModel.BookInCartViewModel
 import sazhin.onlinebookstoreapp.viewModel.BookViewModel
 
 @Parcelize
@@ -40,17 +41,15 @@ class BasketScreen(
     override fun Content(modifier: Modifier) {
         val navigation = LocalStackNavigation.current
 
-        val viewModel = koinViewModel<BookViewModel>()
+        val viewModel = koinViewModel<BookInCartViewModel>()
         val state = viewModel.viewState
+
+        viewModel.loadBooksInCart()
 
         Box(modifier = Modifier.fillMaxSize()) {
             Column(Modifier.fillMaxSize()) {
 
                 val lazyGridState = rememberLazyGridState()
-
-                state.error?.let {
-                    Text(text = it)
-                }
 
                 LazyVerticalGrid(
                     columns = GridCells.Fixed(2),
@@ -62,6 +61,8 @@ class BasketScreen(
                     }
                 }
             }
+
+            Text(text = String.format("Сумма к оплате: %d руб.", viewModel.checkSumForAllBook()))
 
             Button(
                 onClick = { /* Handle buy button click */ },
