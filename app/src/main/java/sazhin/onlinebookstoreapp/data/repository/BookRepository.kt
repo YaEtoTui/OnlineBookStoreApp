@@ -89,4 +89,20 @@ class BookRepository(
                 }
         }
     }
+
+    override suspend fun deleteBookInCart(book: Book) {
+        return withContext(Dispatchers.IO) {
+            bookDb.booksDao().delete(
+                BookDbEntity(
+                    id = book.id,
+                    name = book.name,
+                    page = book.page,
+                    pathPhoto = book.path,
+                    price = book.price,
+                    authorName = book.authorName,
+                    isOrder = false
+                )
+            )
+        }
+    }
 }

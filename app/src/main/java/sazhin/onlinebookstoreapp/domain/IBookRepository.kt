@@ -13,4 +13,6 @@ interface IBookRepository {
     suspend fun saveBookInCart(book: Book)
 
     suspend fun saveOrder(bookList: List<Book>)
+
+    suspend fun deleteBookInCart(book: Book)
 }

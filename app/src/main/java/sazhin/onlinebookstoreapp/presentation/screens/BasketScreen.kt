@@ -12,10 +12,12 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -56,7 +58,7 @@ class BasketScreen(
                     modifier = Modifier.fillMaxSize()
                 ) {
                     items(state.items) {
-                        ConstructorItem(item = it, navigation)
+                        ConstructorItem(item = it, viewModel::deleteBook, navigation)
                     }
                 }
             }
@@ -79,6 +81,7 @@ class BasketScreen(
 @Composable
 private fun ConstructorItem(
     item: Book,
+    deleteBook: (Book) -> Unit = {},
     navigation: StackNavContainer? = null,
 ) {
     Column (
@@ -103,5 +106,12 @@ private fun ConstructorItem(
             text = String.format("Цена: %d", item.price),
             fontSize = 10.sp,
         )
+
+        Button(
+            onClick = { deleteBook.invoke(item) },
+            colors = ButtonDefaults.buttonColors(containerColor = Color.Red),
+        ) {
+            Text(stringResource(R.string.cart_delete))
+        }
     }
 }

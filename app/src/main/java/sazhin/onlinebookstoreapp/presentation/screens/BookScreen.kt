@@ -39,12 +39,10 @@ class BookScreen(
                 contentDescription = null
             )
             Spacer(modifier = Modifier.height(16.dp))
-            Text(
-                text = item.name,
-            )
-            Text(
-                text = item.page.toString(),
-            )
+            Text(text = String.format("Название книги: %s", item.name))
+            Text(text = String.format("Количество страниц: %d", item.page))
+            Text(text = String.format("В наличии: %d", item.count))
+            Text(text = String.format("Цена: %d руб.", item.price))
         }
     }
 }

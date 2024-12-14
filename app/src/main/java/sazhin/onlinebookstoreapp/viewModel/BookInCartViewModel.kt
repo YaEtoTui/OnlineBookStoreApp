@@ -26,6 +26,9 @@ class BookInCartViewModel(
         }
     }
 
+    /**
+     * Создаем заказ из списка книг в корзине
+     */
     fun onCreateOrder() {
         viewModelScope.launch {
             repository.saveOrder(booksInCart)
@@ -38,6 +41,16 @@ class BookInCartViewModel(
      */
     fun checkSumForAllBook(): Int {
         return mutableState.items.sumOf { it.price }
+    }
+
+    /**
+     * Удаляем книгу из корзины
+     */
+    fun deleteBook(book: Book) {
+        viewModelScope.launch {
+            repository.deleteBookInCart(book)
+            loadBooksInCart()
+        }
     }
 
     private class MutableBooksState : BooksInCartState {
