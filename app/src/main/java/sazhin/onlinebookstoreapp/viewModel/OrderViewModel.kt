@@ -27,7 +27,7 @@ class OrderViewModel(
     }
 
     fun checkCountOrders(): Int {
-        return orders.size
+        return mutableState.items.size
     }
 
     private class MutableOrdersState : OrderState {
